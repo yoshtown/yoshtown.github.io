@@ -2,64 +2,185 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yosh | Applied ML Engineer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yoshua | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #151822;
+      --text: #e6e8eb;
+      --muted: #9aa1ac;
+      --accent: #7c9cff;
+      --border: #232736;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
-      font-family: system-ui, sans-serif;
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-      background: #0f172a;
-      color: #e5e7eb;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
-    h1, h2 {
-      color: #38bdf8;
-    }
+
     a {
-      color: #a5f3fc;
+      color: var(--accent);
       text-decoration: none;
     }
-    .project {
-      border-left: 3px solid #38bdf8;
-      padding-left: 1rem;
+
+    .container {
+      max-width: 980px;
+      margin: auto;
+      padding: 4rem 1.5rem;
+    }
+
+    header {
+      margin-bottom: 4rem;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    header p {
+      color: var(--muted);
+      max-width: 600px;
+      margin-top: 1rem;
+    }
+
+    nav {
+      margin-top: 1.5rem;
+    }
+
+    nav a {
+      margin-right: 1.25rem;
+      font-weight: 500;
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    section h2 {
+      font-size: 1.75rem;
       margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .tags span {
+      display: inline-block;
+      background: #1e2230;
+      color: var(--muted);
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      margin-right: 0.4rem;
+      margin-bottom: 0.4rem;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 6rem;
     }
   </style>
 </head>
+
 <body>
+  <div class="container">
+    <header>
+      <h1>Yoshi</h1>
+      <p>
+        Machine Learning · Systems · End-to-End Thinking  
+        I build clear, maintainable projects that focus on full pipelines and real use.
+      </p>
 
-<h1>Yoshua</h1>
-<p>Applied Machine Learning Engineer</p>
+      <nav>
+        <a href="https://github.com/yoshtown">GitHub</a>
+        <a href="https://www.linkedin.com/in/yoshua-isreal/">LinkedIn</a>
+        <a href="mailto:yoshtown@gmail.com">Email</a>
+      </nav>
+    </header>
 
-<h2>About</h2>
-<p>
-I design and build ML systems with a focus on retrieval, reasoning, and practical deployment.
-My work prioritizes clarity, evaluation, and real-world constraints.
-</p>
+    <section>
+      <h2>Selected Projects</h2>
 
-<h2>Projects</h2>
+      <div class="projects">
+        <div class="card">
+          <h3>Local RAG Chatbot</h3>
+          <p>
+            End-to-end local retrieval-augmented generation system designed for private document workflows.
+          </p>
+          <div class="tags">
+            <span>Python</span>
+            <span>RAG</span>
+            <span>LLMs</span>
+            <span>Vector DB</span>
+          </div>
+          <p><a href="https://github.com/yoshtown/local-rag-chatbot">View Project →</a></p>
+        </div>
 
-<div class="project">
-  <h3>Local RAG Chatbot</h3>
-  <p>
-    Local-first RAG system supporting private documents, embeddings, and custom query engines.
-  </p>
-  <a href="https://github.com/yoshtown/local-rag-chatbot">View on GitHub →</a>
-</div>
+        <div class="card">
+          <h3>Guitar Lesson Level Prediction </h3>
+          <p>
+            Machine learning project that predicts appropriate guitar lesson difficulty based on youtube video title and description.
+          </p>
+          <div class="tags">
+            <span>System Design</span>
+            <span>Learning</span>
+            <span>Structure</span>
+          </div>
+          <p><a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project">View Project →</a></p>
+        </div>
+      </div>
+    </section>
 
-<div class="project">
-  <h3>ML Systems & Experiments</h3>
-  <p>
-    Classical ML, NLP pipelines, TF-IDF vs embeddings, and evaluation-focused experiments.
-  </p>
-  <a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project">View on GitHub →</a>
-</div>
-
-<h2>Links</h2>
-<ul>
-  <li><a href="https://github.com/yoshtown">GitHub</a></li>
-  <li><a href="https://www.linkedin.com/in/yoshua-isreal/">LinkedIn</a></li>
-</ul>
-
+    <footer>
+      © 2026 Yosh · Built with plain HTML & CSS
+    </footer>
+  </div>
 </body>
 </html>
