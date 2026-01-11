@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yoshua | Portfolio</title>
+  <title>Yoshi | Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,12 +11,13 @@
 
   <style>
     :root {
-      --bg: #0f1115;
-      --panel: #151822;
-      --text: #e6e8eb;
-      --muted: #9aa1ac;
-      --accent: #7c9cff;
-      --border: #232736;
+      /* Balanced dark theme */
+      --bg: #181b22;
+      --panel: #222633;
+      --text: #f1f3f5;
+      --muted: #b4bac4;
+      --accent: #8aa2ff;
+      --border: #2f3446;
     }
 
     * {
@@ -29,12 +30,17 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     .container {
@@ -44,7 +50,7 @@
     }
 
     header {
-      margin-bottom: 4rem;
+      margin-bottom: 4.5rem;
     }
 
     header h1 {
@@ -55,41 +61,40 @@
 
     header p {
       color: var(--muted);
-      max-width: 600px;
+      max-width: 620px;
       margin-top: 1rem;
     }
 
     nav {
-      margin-top: 1.5rem;
+      margin-top: 1.75rem;
     }
 
     nav a {
-      margin-right: 1.25rem;
-      font-weight: 500;
+      margin-right: 1.5rem;
     }
 
     section {
-      margin-bottom: 4rem;
+      margin-bottom: 4.5rem;
     }
 
     section h2 {
-      font-size: 1.75rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.75rem;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.6rem;
     }
 
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      gap: 1.75rem;
     }
 
     .card {
       background: var(--panel);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 1.5rem;
+      border-radius: 14px;
+      padding: 1.75rem;
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
@@ -99,21 +104,21 @@
     }
 
     .card h3 {
-      margin-bottom: 0.5rem;
-      font-size: 1.25rem;
+      margin-bottom: 0.6rem;
+      font-size: 1.3rem;
     }
 
     .card p {
       color: var(--muted);
       font-size: 0.95rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1.1rem;
     }
 
     .tags span {
       display: inline-block;
-      background: #1e2230;
+      background: #2a2f40;
       color: var(--muted);
-      padding: 0.25rem 0.6rem;
+      padding: 0.3rem 0.65rem;
       border-radius: 999px;
       font-size: 0.75rem;
       margin-right: 0.4rem;
@@ -134,14 +139,14 @@
     <header>
       <h1>Yoshi</h1>
       <p>
-        Machine Learning · Systems · End-to-End Thinking  
+        Machine Learning · Systems · End-to-End Thinking<br/>
         I build clear, maintainable projects that focus on full pipelines and real use.
       </p>
 
       <nav>
-        <a href="https://github.com/yoshtown">GitHub</a>
-        <a href="https://www.linkedin.com/in/yoshua-isreal/">LinkedIn</a>
-        <a href="mailto:yoshtown@gmail.com">Email</a>
+        <a href="https://github.com/yoshtown" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/yoshua-isreal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:yoshtown@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
       </nav>
     </header>
 
@@ -152,7 +157,8 @@
         <div class="card">
           <h3>Local RAG Chatbot</h3>
           <p>
-            End-to-end local retrieval-augmented generation system designed for private document workflows.
+            End-to-end local retrieval-augmented generation system designed for
+            private document workflows.
           </p>
           <div class="tags">
             <span>Python</span>
@@ -160,26 +166,38 @@
             <span>LLMs</span>
             <span>Vector DB</span>
           </div>
-          <p><a href="https://github.com/yoshtown/local-rag-chatbot">View Project →</a></p>
+          <p>
+            <a href="https://github.com/yoshtown/local-rag-chatbot"
+               target="_blank" rel="noopener noreferrer">
+              View Project →
+            </a>
+          </p>
         </div>
 
         <div class="card">
-          <h3>Guitar Lesson Level Prediction </h3>
+          <h3>Guitar Lesson Level Prediction</h3>
           <p>
-            Machine learning project that predicts appropriate guitar lesson difficulty based on youtube video title and description.
+            Machine learning project that predicts appropriate guitar lesson
+            difficulty based on player attributes and learning signals.
           </p>
           <div class="tags">
-            <span>System Design</span>
-            <span>Learning</span>
-            <span>Structure</span>
+            <span>Python</span>
+            <span>Machine Learning</span>
+            <span>Classification</span>
+            <span>Data Prep</span>
           </div>
-          <p><a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project">View Project →</a></p>
+          <p>
+            <a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project"
+               target="_blank" rel="noopener noreferrer">
+              View Project →
+            </a>
+          </p>
         </div>
       </div>
     </section>
 
     <footer>
-      © 2026 Yosh · Built with plain HTML & CSS
+      © 2026 Yoshi · Simple, readable, and intentionally built
     </footer>
   </div>
 </body>
