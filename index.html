@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Yoshua | Portfolio</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -32,39 +31,33 @@
     }
 
     /* =========================
-       BASE
+       BASE STYLES
        ========================= */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
       transition: background 0.3s ease, color 0.3s ease;
+      scroll-behavior: smooth;
       position: relative;
     }
 
-    /* =========================
-       SUBTLE BACKGROUND TEXTURE
-       ========================= */
+    /* Subtle background texture + gradient */
     body::before {
       content: '';
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      /* Add a subtle diagonal noise pattern */
       background: 
         linear-gradient(135deg, rgba(24,27,34,0.95), rgba(34,38,51,0.95)),
         url('https://www.transparenttextures.com/patterns/diagonal-noise.png') repeat;
       background-size: auto, 150px 150px;
-      opacity: 0.07; /* slightly stronger for visibility */
+      opacity: 0.07;
       pointer-events: none;
       z-index: 0;
     }
+
     a {
       color: var(--accent);
       text-decoration: none;
@@ -75,42 +68,25 @@
       transition: filter 0.3s ease, text-decoration 0.3s ease;
     }
 
-    a:hover {
-      text-decoration: underline;
-      filter: brightness(1.2);
-    }
+    a:hover { filter: brightness(1.2); text-decoration: underline; }
 
-    .container {
-      max-width: 980px;
-      margin: auto;
-      padding: 4rem 1.5rem;
-      animation: fadeIn 0.6s ease forwards;
-      position: relative;
-      z-index: 1;
-    }
+    .container { max-width: 980px; margin: auto; padding: 4rem 1.5rem; position: relative; z-index: 1; }
 
     header {
-      margin-bottom: 4.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 6rem;
     }
 
-    header h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-    }
-
-    header p {
-      color: var(--muted);
-      max-width: 620px;
-      margin-top: 1rem;
-    }
+    header h1 { font-size: 3rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.5rem; }
+    header p { color: var(--muted); max-width: 620px; margin-bottom: 1.5rem; }
 
     nav {
-      margin-top: 1.75rem;
       display: flex;
-      align-items: center;
-      gap: 1.5rem;
       flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     .toggle {
@@ -125,34 +101,17 @@
       transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
 
-    .toggle:hover {
-      box-shadow: 0 0 12px rgba(138, 162, 255, 0.35);
-      transform: scale(1.05);
-    }
+    .toggle:hover { box-shadow: 0 0 12px rgba(138, 162, 255, 0.35); transform: scale(1.05); }
 
-    section {
-      margin-bottom: 4.5rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+    section { margin-bottom: 6rem; opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    section.visible { opacity: 1; transform: translateY(0); }
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    section h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.75rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.6rem;
-    }
+    section h2 { font-size: 1.8rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); padding-bottom: 0.6rem; }
 
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.75rem;
+      gap: 2rem;
     }
 
     .card {
@@ -163,6 +122,7 @@
       opacity: 0;
       transform: translateY(12px);
       animation: cardIn 0.6s ease forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     }
 
     .card:nth-child(1) { animation-delay: 0.1s; }
@@ -174,16 +134,8 @@
       box-shadow: 0 8px 20px rgba(138, 162, 255, 0.25);
     }
 
-    .card h3 {
-      margin-bottom: 0.6rem;
-      font-size: 1.3rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.1rem;
-    }
+    .card h3 { margin-bottom: 0.6rem; font-size: 1.3rem; }
+    .card p { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.1rem; }
 
     .tags span {
       display: inline-block;
@@ -197,24 +149,10 @@
       margin-bottom: 0.4rem;
     }
 
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      margin-top: 6rem;
-    }
+    footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 6rem; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes cardIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes cardIn { to { opacity: 1; transform: translateY(0); } }
 
     @media print {
       body { background: white; color: black; }
@@ -227,12 +165,11 @@
 
 <body>
   <div class="container">
+    <!-- HEADER -->
     <header>
       <h1>Yoshua</h1>
-      <p>
-        Machine Learning · Systems · End-to-End Thinking<br/>
-        I build clear, maintainable projects that focus on full pipelines and real use.
-      </p>
+      <p>Machine Learning · Systems · End-to-End Thinking<br>
+      I build clear, maintainable projects that focus on full pipelines and real use.</p>
 
       <nav>
         <a href="https://github.com/yoshtown" target="_blank" rel="noopener noreferrer">GitHub</a>
@@ -242,49 +179,34 @@
       </nav>
     </header>
 
-    <section>
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
       <h2>Selected Projects</h2>
       <div class="projects">
         <div class="card">
           <h3>Local RAG Chatbot</h3>
-          <p>
-            End-to-end local retrieval-augmented generation system designed for
-            private document workflows.
-          </p>
+          <p>End-to-end local retrieval-augmented generation system designed for private document workflows.</p>
           <div class="tags">
-            <span>Python</span>
-            <span>RAG</span>
-            <span>LLMs</span>
-            <span>Vector DB</span>
+            <span>Python</span><span>RAG</span><span>LLMs</span><span>Vector DB</span>
           </div>
-          <p>
-            <a href="https://github.com/yoshtown/local-rag-chatbot"
-               target="_blank" rel="noopener noreferrer">
-              View Project →
-            </a>
-          </p>
+          <p><a href="https://github.com/yoshtown/local-rag-chatbot" target="_blank" rel="noopener noreferrer">View Project →</a></p>
         </div>
 
         <div class="card">
           <h3>Guitar Lesson Level Prediction</h3>
-          <p>
-            Machine learning project that predicts appropriate guitar lesson
-            difficulty based on YouTube video title and description.
-          </p>
+          <p>Machine learning project that predicts appropriate guitar lesson difficulty based on YouTube video title and description.</p>
           <div class="tags">
-            <span>Python</span>
-            <span>Machine Learning</span>
-            <span>Classification</span>
-            <span>NLP</span>
+            <span>Python</span><span>Machine Learning</span><span>Classification</span><span>NLP</span>
           </div>
-          <p>
-            <a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project"
-               target="_blank" rel="noopener noreferrer">
-              View Project →
-            </a>
-          </p>
+          <p><a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project" target="_blank" rel="noopener noreferrer">View Project →</a></p>
         </div>
       </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>You can reach me via <a href="mailto:yoshtown@gmail.com" target="_blank" rel="noopener noreferrer">Email</a> or connect on <a href="https://www.linkedin.com/in/yoshua-isreal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>. Check my work on <a href="https://github.com/yoshtown" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>
     </section>
 
     <footer>
@@ -292,7 +214,9 @@
     </footer>
   </div>
 
+  <!-- SCRIPTS -->
   <script>
+    // Theme toggle
     const root = document.documentElement;
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme) root.setAttribute("data-theme", savedTheme);
@@ -304,14 +228,13 @@
       localStorage.setItem("theme", next);
     }
 
-    // Scroll reveal for sections
+    // Scroll reveal sections
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.15 });
-
     sections.forEach(section => observer.observe(section));
   </script>
 </body>
