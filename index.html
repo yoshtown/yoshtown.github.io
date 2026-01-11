@@ -3,15 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yoshi | Portfolio</title>
+  <title>Yoshua | Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* =========================
+       THEME VARIABLES
+       ========================= */
     :root {
-      /* Balanced dark theme */
       --bg: #181b22;
       --panel: #222633;
       --text: #f1f3f5;
@@ -20,6 +22,18 @@
       --border: #2f3446;
     }
 
+    [data-theme="light"] {
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #4b5563;
+      --accent: #4f6cff;
+      --border: #e5e7eb;
+    }
+
+    /* =========================
+       BASE
+       ========================= */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -31,6 +45,7 @@
       background: var(--bg);
       color: var(--text);
       line-height: 1.65;
+      transition: background 0.3s ease, color 0.3s ease;
     }
 
     a {
@@ -47,8 +62,12 @@
       max-width: 980px;
       margin: auto;
       padding: 4rem 1.5rem;
+      animation: fadeIn 0.6s ease forwards;
     }
 
+    /* =========================
+       HEADER
+       ========================= */
     header {
       margin-bottom: 4.5rem;
     }
@@ -67,12 +86,26 @@
 
     nav {
       margin-top: 1.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    nav a {
-      margin-right: 1.5rem;
+    .toggle {
+      margin-left: auto;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--text);
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
     }
 
+    /* =========================
+       SECTIONS
+       ========================= */
     section {
       margin-bottom: 4.5rem;
     }
@@ -84,6 +117,9 @@
       padding-bottom: 0.6rem;
     }
 
+    /* =========================
+       PROJECT CARDS
+       ========================= */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -95,8 +131,13 @@
       border: 1px solid var(--border);
       border-radius: 14px;
       padding: 1.75rem;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      opacity: 0;
+      transform: translateY(12px);
+      animation: cardIn 0.6s ease forwards;
     }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
 
     .card:hover {
       transform: translateY(-4px);
@@ -116,7 +157,7 @@
 
     .tags span {
       display: inline-block;
-      background: #2a2f40;
+      background: rgba(127, 140, 255, 0.12);
       color: var(--muted);
       padding: 0.3rem 0.65rem;
       border-radius: 999px;
@@ -131,13 +172,51 @@
       font-size: 0.85rem;
       margin-top: 6rem;
     }
+
+    /* =========================
+       ANIMATIONS
+       ========================= */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes cardIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       PRINT MODE
+       ========================= */
+    @media print {
+      body {
+        background: white;
+        color: black;
+      }
+
+      .toggle {
+        display: none;
+      }
+
+      a {
+        color: black;
+        text-decoration: none;
+      }
+
+      .card {
+        break-inside: avoid;
+      }
+    }
   </style>
 </head>
 
 <body>
   <div class="container">
     <header>
-      <h1>Yoshi</h1>
+      <h1>Yoshua</h1>
       <p>
         Machine Learning · Systems · End-to-End Thinking<br/>
         I build clear, maintainable projects that focus on full pipelines and real use.
@@ -147,6 +226,7 @@
         <a href="https://github.com/yoshtown" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="https://www.linkedin.com/in/yoshua-isreal/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
         <a href="mailto:yoshtown@gmail.com" target="_blank" rel="noopener noreferrer">Email</a>
+        <button class="toggle" onclick="toggleTheme()">Toggle theme</button>
       </nav>
     </header>
 
@@ -177,8 +257,7 @@
         <div class="card">
           <h3>Guitar Lesson Level Prediction</h3>
           <p>
-            Machine learning project that predicts appropriate guitar lesson
-            difficulty based on player attributes and learning signals.
+            Machine learning project that predicts appropriate guitar lesson difficulty based on youtube video title and description.
           </p>
           <div class="tags">
             <span>Python</span>
@@ -197,8 +276,24 @@
     </section>
 
     <footer>
-      © 2026 Yoshi · Simple, readable, and intentionally built
+      © 2026 Yoshua
     </footer>
   </div>
+
+  <script>
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme) {
+      root.setAttribute("data-theme", savedTheme);
+    }
+
+    function toggleTheme() {
+      const current = root.getAttribute("data-theme");
+      const next = current === "light" ? "dark" : "light";
+      root.setAttribute("data-theme", next);
+      localStorage.setItem("theme", next);
+    }
+  </script>
 </body>
 </html>
