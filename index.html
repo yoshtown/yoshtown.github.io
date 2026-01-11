@@ -46,16 +46,35 @@
       color: var(--text);
       line-height: 1.65;
       transition: background 0.3s ease, color 0.3s ease;
+      position: relative;
+    }
+
+    /* =========================
+       SUBTLE BACKGROUND TEXTURE
+       ========================= */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://www.transparenttextures.com/patterns/diagonal-noise.png') repeat;
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 0;
     }
 
     a {
       color: var(--accent);
       text-decoration: none;
       font-weight: 500;
+      background: linear-gradient(90deg, #8aa2ff, #6f9cff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: filter 0.3s ease, text-decoration 0.3s ease;
     }
 
     a:hover {
       text-decoration: underline;
+      filter: brightness(1.2);
     }
 
     .container {
@@ -63,11 +82,10 @@
       margin: auto;
       padding: 4rem 1.5rem;
       animation: fadeIn 0.6s ease forwards;
+      position: relative;
+      z-index: 1;
     }
 
-    /* =========================
-       HEADER
-       ========================= */
     header {
       margin-bottom: 4.5rem;
     }
@@ -101,13 +119,24 @@
       padding: 0.4rem 0.75rem;
       border-radius: 999px;
       font-size: 0.8rem;
+      transition: box-shadow 0.3s ease, transform 0.2s ease;
     }
 
-    /* =========================
-       SECTIONS
-       ========================= */
+    .toggle:hover {
+      box-shadow: 0 0 12px rgba(138, 162, 255, 0.35);
+      transform: scale(1.05);
+    }
+
     section {
       margin-bottom: 4.5rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     section h2 {
@@ -117,9 +146,6 @@
       padding-bottom: 0.6rem;
     }
 
-    /* =========================
-       PROJECT CARDS
-       ========================= */
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -140,8 +166,9 @@
     .card:nth-child(2) { animation-delay: 0.2s; }
 
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px) scale(1.02);
       border-color: var(--accent);
+      box-shadow: 0 8px 20px rgba(138, 162, 255, 0.25);
     }
 
     .card h3 {
@@ -157,8 +184,9 @@
 
     .tags span {
       display: inline-block;
-      background: rgba(127, 140, 255, 0.12);
-      color: var(--muted);
+      background: linear-gradient(135deg, #8aa2ff, #6f9cff);
+      color: #fff;
+      font-weight: 500;
       padding: 0.3rem 0.65rem;
       border-radius: 999px;
       font-size: 0.75rem;
@@ -173,9 +201,6 @@
       margin-top: 6rem;
     }
 
-    /* =========================
-       ANIMATIONS
-       ========================= */
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
@@ -188,27 +213,11 @@
       }
     }
 
-    /* =========================
-       PRINT MODE
-       ========================= */
     @media print {
-      body {
-        background: white;
-        color: black;
-      }
-
-      .toggle {
-        display: none;
-      }
-
-      a {
-        color: black;
-        text-decoration: none;
-      }
-
-      .card {
-        break-inside: avoid;
-      }
+      body { background: white; color: black; }
+      .toggle { display: none; }
+      a { color: black; text-decoration: none; }
+      .card { break-inside: avoid; }
     }
   </style>
 </head>
@@ -232,7 +241,6 @@
 
     <section>
       <h2>Selected Projects</h2>
-
       <div class="projects">
         <div class="card">
           <h3>Local RAG Chatbot</h3>
@@ -257,13 +265,14 @@
         <div class="card">
           <h3>Guitar Lesson Level Prediction</h3>
           <p>
-            Machine learning project that predicts appropriate guitar lesson difficulty based on youtube video title and description.
+            Machine learning project that predicts appropriate guitar lesson
+            difficulty based on YouTube video title and description.
           </p>
           <div class="tags">
             <span>Python</span>
             <span>Machine Learning</span>
             <span>Classification</span>
-            <span>Data Prep</span>
+            <span>NLP</span>
           </div>
           <p>
             <a href="https://github.com/yoshtown/guitar-lesson-level-prediction-project"
@@ -276,17 +285,14 @@
     </section>
 
     <footer>
-      © 2026 Yoshua
+      © 2026 Yoshua · Calm, readable, intentional
     </footer>
   </div>
 
   <script>
     const root = document.documentElement;
     const savedTheme = localStorage.getItem("theme");
-
-    if (savedTheme) {
-      root.setAttribute("data-theme", savedTheme);
-    }
+    if (savedTheme) root.setAttribute("data-theme", savedTheme);
 
     function toggleTheme() {
       const current = root.getAttribute("data-theme");
@@ -294,6 +300,16 @@
       root.setAttribute("data-theme", next);
       localStorage.setItem("theme", next);
     }
+
+    // Scroll reveal for sections
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    sections.forEach(section => observer.observe(section));
   </script>
 </body>
 </html>
